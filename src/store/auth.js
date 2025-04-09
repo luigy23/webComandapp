@@ -21,7 +21,7 @@ export const userAtom = atom(
 
 // Átomo para el estado de autenticación
 export const isAuthenticatedAtom = atom(
-  (get) => !!get(tokenAtom)
+  (get) => !!get(tokenAtom) // Verifica si el token existe y si es válido entonces devuelve true
 );
 
 // Átomos derivados para las acciones de autenticación
@@ -51,6 +51,7 @@ export const authActionsAtom = atom(
 
       case 'LOGOUT':
         set(tokenAtom, null);
+        localStorage.removeItem('token');
         return true;
 
       default:

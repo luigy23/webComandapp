@@ -1,1 +1,38 @@
 @import "tailwindcss";
+
+:root {
+    --color-bg: 
+}
+
+[data-theme="light"] {
+    --color-bgg: #de0707;
+    --primary-color: #000;
+    --secondary-color: #fff;
+}
+
+[data-theme="dark"] {
+    --primary-color: #fff;
+    --secondary-color: #000;
+}
+
+
+
+
+@theme {
+
+    --color-bg: var(--color-bgg);
+
+    --color-wasabi-50: #f7f9ec;
+    --color-wasabi-100: #edf1d6;
+    --color-wasabi-200: #dae4b2;
+    --color-wasabi-300: #c2d185;
+    --color-wasabi-400: #a9bd5e;
+    --color-wasabi-500: #8ca240;
+    --color-wasabi-600: #7a9036;
+    --color-wasabi-700: #536328;
+    --color-wasabi-800: #444f25;
+    --color-wasabi-900: #3b4423;
+    --color-wasabi-950: #1e240f;
+}
+
+
