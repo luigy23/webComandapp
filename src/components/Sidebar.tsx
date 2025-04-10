@@ -29,6 +29,10 @@ const Sidebar = () => {
               <span className="mr-3">💰</span>
               <span>Caja</span>
             </Link>
+            <Link to="/mesas" className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
+              <span className="mr-3">🍽️</span>
+              <span>Mesas</span>
+            </Link>
 
             <Link to="/reportes" className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100">
               <span className="mr-3">📊</span>

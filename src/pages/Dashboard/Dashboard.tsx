@@ -19,7 +19,7 @@ const Dashboard = ({ children }: DashboardLayoutProps) => {
           <div className="flex justify-between items-center">
             <div>
               <h2 className="text-2xl font-semibold text-gray-800">Bienvenido, {user?.name}</h2>
-              <p className="text-gray-600">Rol: {user?.role.name}</p>
+              <p className="text-gray-600">Rol: {user?.role.name} {user?.role.id}</p>
             </div>
           </div>
         </div>

@@ -13,7 +13,9 @@ axiosClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      // Limpiamos el token de comillas extras
+      const cleanToken = token.replace(/^"|"$/g, '');
+      config.headers.Authorization = `Bearer ${cleanToken}`;
     }
     return config;
   },
