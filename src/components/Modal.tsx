@@ -26,7 +26,7 @@ const Modal: React.FC<ModalProps> = ({
       />
       
       {/* Modal */}
-      <div className={`relative bg-white rounded-lg w-full max-w-md mx-4 p-6 ${className}`}>
+      <div className={`relative bg-white rounded-lg w-full max-w-2xl mx-4 p-6 ${className}`}>
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-semibold">{title}</h2>

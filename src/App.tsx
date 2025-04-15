@@ -8,6 +8,10 @@ import TabsLayout from './components/Tabs';
 import Roles from './pages/Dashboard/Usuarios/Roles';
 import Mesas from './pages/Dashboard/Mesas';
 import Zonas from './pages/Dashboard/Mesas/Zonas';
+import Productos from './pages/Dashboard/Productos';
+import Categorias from './pages/Dashboard/Productos/Categorias';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PrivateRoutes = ({children}: {children: React.ReactNode}) => {
   const {isAuthenticated, isInitialized} = useAuth();
@@ -28,91 +32,89 @@ const PrivateRoutes = ({children}: {children: React.ReactNode}) => {
 };
 
 function App() {
-
-
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={
-        <div>
-          <h1>Register</h1>
-        </div>
-      } />
-      <Route path="/" element={
-        <PrivateRoutes>
+    <>
+      <ToastContainer position="top-right" autoClose={3000} />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={
           <div>
-            <h1>Home</h1>
+            <h1>Register</h1>
           </div>
-        </PrivateRoutes>
-      } />
-      <Route path="/dashboard" element={
-        <PrivateRoutes>
-          <Dashboard />
-        </PrivateRoutes>
-      } />
+        } />
+        <Route path="/" element={
+          <PrivateRoutes>
+            <Dashboard></Dashboard>
+          </PrivateRoutes>
+        } />
+        <Route path="/dashboard" element={
+          <PrivateRoutes>
+            <Dashboard />
+          </PrivateRoutes>
+        } />
 
-      <Route path="/usuarios/*" element={
-        <PrivateRoutes>
-          <Dashboard>
-            <TabsLayout tabs={[
-              { label: 'Usuarios', path: '/usuarios' },
-              { label: 'Roles', path: '/usuarios/roles' }
-            ]}>
+        <Route path="/usuarios/*" element={
+          <PrivateRoutes>
+            <Dashboard>
+              <TabsLayout tabs={[
+                { label: 'Usuarios', path: '/usuarios' },
+                { label: 'Roles', path: '/usuarios/roles' }
+              ]}>
 
-              <Routes>
-                <Route path="/" element={<Usuarios />} />
-                <Route path="/roles" element={<Roles />} />
-              </Routes>
-            </TabsLayout>
-          </Dashboard>
-        </PrivateRoutes>
-      } />
+                <Routes>
+                  <Route path="/" element={<Usuarios />} />
+                  <Route path="/roles" element={<Roles />} />
+                </Routes>
+              </TabsLayout>
+            </Dashboard>
+          </PrivateRoutes>
+        } />
 
-      <Route path="/mesas/*" element={
-        <PrivateRoutes>
-          <Dashboard>
-            <TabsLayout tabs={[
-              { label: 'Mesas', path: '/mesas' },
-              { label: 'Zonas', path: '/mesas/zonas' }
-            ]}>
-              <Routes>
-                <Route path="/" element={<Mesas />} />
-                <Route path="/zonas" element={<Zonas />} />
-              </Routes>
-            </TabsLayout>
-          </Dashboard>
-        </PrivateRoutes>
-      } />
+        <Route path="/mesas/*" element={
+          <PrivateRoutes>
+            <Dashboard>
+              <TabsLayout tabs={[
+                { label: 'Mesas', path: '/mesas' },
+                { label: 'Zonas', path: '/mesas/zonas' }
+              ]}>
+                <Routes>
+                  <Route path="/" element={<Mesas />} />
+                  <Route path="/zonas" element={<Zonas />} />
+                </Routes>
+              </TabsLayout>
+            </Dashboard>
+          </PrivateRoutes>
+        } />
 
-     
 
-      {/* Rutas para productos y categorías */}
-      <Route path="/productos" element={
-        <PrivateRoutes>
-          <Dashboard>
-            <TabsLayout tabs={[
-              { label: 'Productos', path: '/productos' },
-              { label: 'Categorias', path: '/categorias' }
-            ]}>
-              <h1>Contenido de Productos</h1>
-            </TabsLayout>
-          </Dashboard>
-        </PrivateRoutes>
-      } />
+        {/* Rutas para productos y categorías */}
+        <Route path="/productos" element={
+          <PrivateRoutes>
+            <Dashboard>
+              <TabsLayout tabs={[
+                { label: 'Productos', path: '/productos' },
+                { label: 'Categorias', path: '/categorias' }
+              ]}>
+               <Productos />
+              </TabsLayout>
+            </Dashboard>
+          </PrivateRoutes>
+        } />
 
-      <Route path="/categorias" element={
-        <PrivateRoutes>
-          <Dashboard>
-            <TabsLayout tabs={[
-              { label: 'Productos', path: '/productos' },
-              { label: 'Categorias', path: '/categorias' }
-            ]}>
-              <h1>Contenido de Categorías</h1>
-            </TabsLayout>
-          </Dashboard>
-        </PrivateRoutes>
-      } />
-    </Routes>
+        <Route path="/categorias" element={
+          <PrivateRoutes>
+            <Dashboard>
+              <TabsLayout tabs={[
+                { label: 'Productos', path: '/productos' },
+                { label: 'Categorias', path: '/categorias' }
+              ]}>
+                <Categorias />
+              </TabsLayout>
+            </Dashboard>
+          </PrivateRoutes>
+        } />
+      </Routes>
+    </>
   )
 }
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { tablesService, tableCategoriesService, type Table, type TableCategory, TableStatus } from '../../services/tablesService';
 import Modal from '../../components/Modal';
 import TableForm from './Mesas/TableForm';
+import ItemMesa from './Mesas/ItemMesa';
 
 const Mesas: React.FC = () => {
   const [tables, setTables] = useState<Table[]>([]);
@@ -94,36 +95,6 @@ const Mesas: React.FC = () => {
     table.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const getStatusColor = (status: TableStatus) => {
-    switch (status) {
-      case TableStatus.AVAILABLE:
-        return 'bg-green-100 text-green-800';
-      case TableStatus.OCCUPIED:
-        return 'bg-red-100 text-red-800';
-      case TableStatus.BILL_PENDING:
-        return 'bg-yellow-100 text-yellow-800';
-      case TableStatus.DISABLED:
-        return 'bg-gray-100 text-gray-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  const getStatusText = (status: TableStatus) => {
-    switch (status) {
-      case TableStatus.AVAILABLE:
-        return 'Disponible';
-      case TableStatus.OCCUPIED:
-        return 'Ocupada';
-      case TableStatus.BILL_PENDING:
-        return 'Pendiente de Pago';
-      case TableStatus.DISABLED:
-        return 'Deshabilitada';
-      default:
-        return status;
-    }
-  };
-
   return (
     <div className="max-w-7xl mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
@@ -166,43 +137,12 @@ const Mesas: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredTables.map(table => (
-            <div key={table.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-semibold">Mesa {table.number}</h3>
-                  <span className={`px-2 py-1 rounded-full text-sm ${getStatusColor(table.status)}`}>
-                    {getStatusText(table.status)}
-                  </span>
-                </div>
-                <p className="text-gray-600 mb-2">{table.description}</p>
-                <div className="flex items-center mb-4">
-                  <span className="text-sm text-gray-500">
-                    Capacidad: {table.capacity} personas
-                  </span>
-                </div>
-                {table.category && (
-                  <div className="mb-4">
-                    <span className="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                      {table.category.name}
-                    </span>
-                  </div>
-                )}
-                <div className="flex justify-end gap-2">
-                  <button
-                    onClick={() => handleEdit(table)}
-                    className="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    onClick={() => handleDelete(table.id)}
-                    className="px-3 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200"
-                  >
-                    Eliminar
-                  </button>
-                </div>
-              </div>
-            </div>
+            <ItemMesa
+              key={table.id}
+              table={table}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
           ))}
         </div>
       )}
