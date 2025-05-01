@@ -150,7 +150,7 @@ export const productsService = {
 export const productCategoriesService = {
     async getCategories(): Promise<Category[]> {
         try {
-            const { data } = await axiosClient.get('/product-categories');
+            const { data } = await axiosClient.get('/categories');
             return data;
         }
         catch (error) {
@@ -161,7 +161,7 @@ export const productCategoriesService = {
     },
     async getCategoryById(id: number): Promise<Category> {
         try {
-            const { data } = await axiosClient.get(`/product-categories/${id}`);
+            const { data } = await axiosClient.get(`/categories/${id}`);
             return data;
         }
         catch (error) {
@@ -172,7 +172,7 @@ export const productCategoriesService = {
     },
     async createCategory(categoryData: CreateCategoryData): Promise<Category> {
         try {
-            const { data } = await axiosClient.post('/product-categories', categoryData);
+            const { data } = await axiosClient.post('/categories', categoryData);
             return data;
         }
         catch (error) {
@@ -183,7 +183,7 @@ export const productCategoriesService = {
     },
     async updateCategory(id: number, categoryData: UpdateCategoryData): Promise<Category> {
         try {
-            const { data } = await axiosClient.put(`/product-categories/${id}`, categoryData);
+            const { data } = await axiosClient.put(`/categories/${id}`, categoryData);
             return data;
         }
         catch (error) {
@@ -194,7 +194,7 @@ export const productCategoriesService = {
     },
     async deleteCategory(id: number): Promise<{ message: string }> {
         try {
-            const { data } = await axiosClient.delete(`/product-categories/${id}`);
+            const { data } = await axiosClient.delete(`/categories/${id}`);
             return data;
         }
         catch (error) {

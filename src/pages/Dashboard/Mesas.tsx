@@ -41,8 +41,13 @@ const Mesas: React.FC = () => {
   const handleCategoryChange = async (categoryId: number | 'all') => {
     setSelectedCategory(categoryId);
     setIsLoading(true);
+    if (categoryId === 'all') {
+      loadTables();
+      return;
+    }
+    
     try {
-      const data = await tablesService.getTables(categoryId === 'all' ? undefined : categoryId);
+      const data = await tablesService.getTablesByCategory(categoryId);
       setTables(data);
     } catch (error) {
       console.error('Error al filtrar mesas:', error);
